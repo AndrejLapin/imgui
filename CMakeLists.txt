@@ -18,5 +18,10 @@ if((DEFINED IMGUI_BACKEND_SDL) AND (${IMGUI_BACKEND_SDL}))
         ${CMAKE_CURRENT_SOURCE_DIR}/backends/imgui_impl_sdl2.cpp)
 endif()
 
+if ((DEFINED IMGUI_BACKEND_OPENGL3) AND (${IMGUI_BACKEND_OPENGL3}))
+    list(APPEND IMGUI_SOURCE
+        ${CMAKE_CURRENT_SOURCE_DIR}/backends/imgui_impl_opengl3.cpp)
+endif()
+
 add_library(imgui STATIC ${IMGUI_SOURCE})
 target_include_directories(imgui PUBLIC ${IMGUI_INCLUDES})
