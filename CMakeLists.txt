@@ -12,13 +12,15 @@ file(GLOB IMGUI_SOURCE
     )
 set(IMGUI_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR})
 
-# Maybe there is a better way to build a library and not just through setting variables
-if((DEFINED IMGUI_BACKEND_SDL) AND (${IMGUI_BACKEND_SDL}))
+option(IMGUI_ADD_BACKEND_SDL "Add SDL backend to imgui Library" OFF)
+option(IMGUI_ADD_BACKEND_OPENGL3 "Add OpenGL3 backend to imgui Library" OFF)
+
+if(IMGUI_ADD_BACKEND_SDL)
     list(APPEND IMGUI_SOURCE 
         ${CMAKE_CURRENT_SOURCE_DIR}/backends/imgui_impl_sdl2.cpp)
 endif()
 
-if ((DEFINED IMGUI_BACKEND_OPENGL3) AND (${IMGUI_BACKEND_OPENGL3}))
+if (IMGUI_ADD_BACKEND_OPENGL3)
     list(APPEND IMGUI_SOURCE
         ${CMAKE_CURRENT_SOURCE_DIR}/backends/imgui_impl_opengl3.cpp)
 endif()
